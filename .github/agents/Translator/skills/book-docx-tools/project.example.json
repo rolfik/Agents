@@ -1,0 +1,38 @@
+{
+  "output": "Fyzika primárního stavu hmoty - 1955 - překlad.docx",
+  "language_id": 1029,
+  "original_language_id": 2057,
+  "bookmark_prefix": "kniha",
+  "style_prefix": "Kniha",
+  "source_file": "kniha - 1955 - originál.docx",
+  "source_sha256": "SHA256 zkontrolovaného originálu (Get-FileHash)",
+  "assets_dir": "obrazky",
+  "font": "Cambria",
+  "font_size": 11,
+  "toc_title": "Obsah",
+  "toc_levels": "1-2",
+  "page_break_before": ["h1", "h2"],
+  "image_width_cm": 12,
+  "batches": ["prace\\cz-01.json", "prace\\cz-02.json"],
+  "title_page": {
+    "title": "Fyzika primárního stavu hmoty",
+    "subtitle": "a její uplatnění pomocí primární techniky",
+    "original_title": "The Physics of the Primary State of Matter",
+    "original_subtitle": "And Application Through the Primary Technique",
+    "authors": ["Cyril W. Davson"],
+    "author_details": ["M.I.MECH.E., M.INST.PET."],
+    "edition": [
+      "1955",
+      "",
+      "Elverton Books",
+      "Publishers and Distributors",
+      "Southampton House",
+      "317 High Holborn",
+      "London W.C.1"
+    ],
+    "ai_note": "Automatický překlad pomocí <název AI modelu> z originálu.",
+    "notes": [
+      { "id": "scope", "text": "Rozsah: celý text originálu.", "lang": 1029 }
+    ]
+  }
+}

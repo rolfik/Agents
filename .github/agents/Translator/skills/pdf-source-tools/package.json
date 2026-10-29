@@ -1,0 +1,10 @@
+{
+  "name": "translator-pdf-source-tools",
+  "private": true,
+  "type": "module",
+  "description": "Local PDF extraction, rendering, cropping and visual proofing tools for the Translator agent.",
+  "dependencies": {
+    "@napi-rs/canvas": "^1.0.13",
+    "pdfjs-dist": "^6.4.299"
+  }
+}
