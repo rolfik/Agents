@@ -85,7 +85,7 @@ U rozpracovaného překladu, který vznikl bez originálu ve Wordu:
 ## 6. Sestavení Word dokumentu
 
 - Vytvářej skutečně editovatelný dokument, nikoli stránky jako obrázky. Používej standardní odstavcové styly, správnou hierarchii nadpisů a jazyk kontroly pravopisu cs-CZ pro český text a jazyk originálu pro Word originálu.
-- Respektuj uživatelovu šablonu a existující sazbu. Pro nový dokument bez šablony se osvědčila A4, čitelné písmo kolem 11 bodů, přiměřené okraje a začátky hlavních kapitol na nové stránce.
+- Respektuj uživatelovu šablonu a existující sazbu. Pro nový dokument bez šablony používej v originálu i překladu papír A5 (14,8 × 21 cm), okraje 2 cm ze všech stran a základní písmo 12 bodů. Hlavní kapitoly začínají na nové stránce. Obrázky a tabulky přizpůsob šířce sazby 10,8 cm.
 - Přeložená kniha vždy začíná touto úvodní částí, v tomto pořadí a vše vystředěné (vzor schválený uživatelem):
   1. první strana: český název knihy (styl Název), pod ním případný český podtitul (styl Podtitul);
   2. vodorovná čára (skutečná čára ve Wordu, ne řada znaků);
@@ -98,7 +98,7 @@ U rozpracovaného překladu, který vznikl bez originálu ve Wordu:
 - Rozlišuj rok prvního vydání od roku elektronické verze nebo revize použité jako zdroj. Nakladatele, tiskárnu, místo a další údaje přebírej z bibliografické stránky; chybějící údaje nevymýšlej a neověřené údaje neuváděj.
 - Pro označení zdroje používej viditelný štítek „Originál“, nikoli „Předloha“. Technické označení vstupní předlohy v pracovních poznámkách tím není omezeno.
 - Netvrď, že překlad prošel odbornou nebo lidskou revizí, pokud neprošel.
-- Čísla stran v zápatí vytvářej jako pole dokumentu, ne jako napevno vložené hodnoty.
+- Čísla stran v zápatí vytvářej jako pole dokumentu, ne jako napevno vložené hodnoty. První stránka je bez čísla; číslování začíná až na druhé stránce číslem 1 a dál souvisle pokračuje i přes oddíly. Platí pro originál i překlad. Po změně číslování aktualizuj také obsah.
 
 ## 7. Aktuální a klikací obsah
 

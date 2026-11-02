@@ -34,11 +34,11 @@ function Read-BookProject([Parameter(Mandatory)][string]$Path) {
         Prefix             = [string]$c.bookmark_prefix
         StylePrefix        = [string]$c.style_prefix
         Font               = $(if ($c.font) { [string]$c.font } else { 'Cambria' })
-        FontSize           = $(if ($c.font_size) { [double]$c.font_size } else { 11 })
+        FontSize           = $(if ($c.font_size) { [double]$c.font_size } else { 12 })
         TocTitle           = $(if ($c.toc_title) { [string]$c.toc_title } else { 'Obsah' })
         TocLevels          = $(if ($c.toc_levels) { [string]$c.toc_levels } else { '1-2' })
         PageBreakBefore    = $(if ($null -ne $c.page_break_before) { @($c.page_break_before) } else { @('h1', 'h2') })
-        ImageWidthCm       = $(if ($c.image_width_cm) { [double]$c.image_width_cm } else { 12 })
+        ImageWidthCm       = $(if ($c.image_width_cm) { [double]$c.image_width_cm } else { 10.8 })
         TitlePage          = $c.title_page
     }
 }
@@ -95,9 +95,9 @@ function Get-StyleName($Project, [string]$Kind) { $Project.StylePrefix + $Kind }
 
 function Initialize-BookDocument($Doc, $Word, $Project) {
     $ps = $Doc.PageSetup
-    $ps.PageWidth = $Word.CentimetersToPoints(21); $ps.PageHeight = $Word.CentimetersToPoints(29.7)
-    $ps.TopMargin = $Word.CentimetersToPoints(2.2); $ps.BottomMargin = $Word.CentimetersToPoints(2.2)
-    $ps.LeftMargin = $Word.CentimetersToPoints(2.5); $ps.RightMargin = $Word.CentimetersToPoints(2.5)
+    $ps.PageWidth = $Word.CentimetersToPoints(14.8); $ps.PageHeight = $Word.CentimetersToPoints(21)
+    $ps.TopMargin = $Word.CentimetersToPoints(2); $ps.BottomMargin = $Word.CentimetersToPoints(2)
+    $ps.LeftMargin = $Word.CentimetersToPoints(2); $ps.RightMargin = $Word.CentimetersToPoints(2)
     $normal = $Doc.Styles.Item(-1)
     # PowerShell 7 caches the argument type of a COM property setter; always pass point values as [double].
     $normal.Font.Name = $Project.Font; $normal.Font.Size = [double]$Project.FontSize
@@ -172,7 +172,9 @@ function Add-BookBlock($Doc, $Word, $Project, $Block, [string]$Bookmark) {
         $table.Rows.Item(1).Range.Font.Bold = -1
         $table.Borders.Enable = 1
         $table.AutoFitBehavior(0)
-        $widths = if ($Block.col_widths_cm -and $Block.col_widths_cm.Count -eq $cols) { @($Block.col_widths_cm) } else { @(1..$cols | ForEach-Object { 16 / $cols }) }
+        $ps = $Doc.PageSetup
+        $textWidthCm = ($ps.PageWidth - $ps.LeftMargin - $ps.RightMargin) / $Word.CentimetersToPoints(1)
+        $widths = if ($Block.col_widths_cm -and $Block.col_widths_cm.Count -eq $cols) { @($Block.col_widths_cm) } else { @(1..$cols | ForEach-Object { $textWidthCm / $cols }) }
         for ($c = 1; $c -le $cols; $c++) { $table.Columns.Item($c).Width = $Word.CentimetersToPoints([double]$widths[$c - 1]) }
         for ($row = 1; $row -le $rows; $row++) {
             for ($col = 1; $col -le $cols; $col++) { $table.Cell($row, $col).Range.Text = [string]$Block.rows[$row - 1][$col - 1] }
@@ -280,9 +282,13 @@ function Add-BookToc($Doc, $Project) {
 }
 
 function Set-BookFooter($Doc) {
-    $footer = $Doc.Sections.Item(1).Footers.Item(1).Range
+    $section = $Doc.Sections.Item(1)
+    $section.PageSetup.DifferentFirstPageHeaderFooter = -1
+    $footer = $section.Footers.Item(1).Range
     $footer.Fields.Add($footer, 33) | Out-Null
-    $footer = $Doc.Sections.Item(1).Footers.Item(1).Range
+    $section.Footers.Item(1).PageNumbers.RestartNumberingAtSection = $true
+    $section.Footers.Item(1).PageNumbers.StartingNumber = 0
+    $footer = $section.Footers.Item(1).Range
     $footer.Paragraphs.Item(1).Alignment = 1
 }
 
@@ -359,7 +365,7 @@ function Test-BookDocument($Doc, $Project, $Blocks, [switch]$SkipTitlePages) {
         $title = $parts[0].Trim()
         $shown = if ($parts.Count -ge 2) { [int]$parts[-1] } else { -1 }
         $dest = $Doc.Bookmarks.Item($target).Range.Duplicate; $dest.Collapse(1)
-        $page = [int]$dest.Information(3)
+        $page = [int]$dest.Information(1)
         if ($shown -ne $page) { $problems.Add("TOC page mismatch: $title shows $shown, actual $page") }
         $heading = $Doc.Bookmarks.Item($target).Range.Paragraphs.Item(1).Range.Text.Trim()
         if ($heading -ne $title) { $problems.Add("TOC text differs from heading: $title") }

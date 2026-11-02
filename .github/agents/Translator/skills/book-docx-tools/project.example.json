@@ -8,11 +8,11 @@
   "source_sha256": "SHA256 zkontrolovaného originálu (Get-FileHash)",
   "assets_dir": "obrazky",
   "font": "Cambria",
-  "font_size": 11,
+  "font_size": 12,
   "toc_title": "Obsah",
   "toc_levels": "1-2",
   "page_break_before": ["h1", "h2"],
-  "image_width_cm": 12,
+  "image_width_cm": 10.8,
   "batches": ["prace\\cz-01.json", "prace\\cz-02.json"],
   "title_page": {
     "title": "Fyzika primárního stavu hmoty",

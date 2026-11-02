@@ -17,6 +17,8 @@ Spouštěj přes `& <cesta>\skript.ps1 ...`. Cesty v konfiguraci jsou relativní
 
 Vzor je v `project.example.json`. Originál a překlad mají každý **vlastní** konfiguraci, výstup, `bookmark_prefix` a dávky.
 
+Nové dokumenty používají papír A5 (14,8 × 21 cm), okraje 2 cm ze všech stran a základní písmo 12 bodů. Výchozí šířka obrázků je 10,8 cm; tabulky bez `col_widths_cm` se rozdělí rovnoměrně na šířku sazby. Explicitní šířky obrázků a sloupců přizpůsob okrajům. Připojení dávky nemění formát stránky ani styly existujícího dokumentu.
+
 | Pole | Povinné | Význam |
 |---|---|---|
 | `output` | ano | výsledný .docx |
@@ -27,7 +29,7 @@ Vzor je v `project.example.json`. Originál a překlad mají každý **vlastní*
 | `batches` | ano | seznam dávek v pořadí knihy |
 | `source_file`, `source_sha256` | doporučené | zdroj (PDF u originálu, zkontrolovaný originál .docx u překladu) a jeho hash; dávka s jiným `source_sha256` je odmítnuta |
 | `assets_dir` | ne | kořen pro `file` obrázků (výchozí složka konfigurace) |
-| `font`, `font_size`, `image_width_cm` | ne | výchozí Cambria, 11 b., 12 cm |
+| `font`, `font_size`, `image_width_cm` | ne | výchozí Cambria, 12 b., 10,8 cm |
 | `toc_title`, `toc_levels` | ne | „Obsah“, `1-2`; u anglického originálu „Contents“ |
 | `page_break_before` | ne | typy bloků začínající na nové stránce, výchozí `["h1","h2"]` |
 | `title_page` | ano | viz níže |
@@ -70,7 +72,7 @@ Společná nepovinná pole: `source_pages` (pořadí PDF stran originálu), `lan
 
 | Skript | Použití |
 |---|---|
-| `build-docx.ps1 -Project p.json [-Preview náhled.pdf]` | Nový dokument: titulní strany, obsah, všechny bloky, zápatí s polem PAGE, ustálení obsahu, ověření, kontrola balíčku. Existující výstup nepřepíše. |
+| `build-docx.ps1 -Project p.json [-Preview náhled.pdf]` | Nový dokument: titulní strany, obsah, všechny bloky, zápatí s polem PAGE (první stránka bez čísla, druhá stránka číslo 1), ustálení obsahu, ověření, kontrola balíčku. Existující výstup nepřepíše. |
 | `append-batch.ps1 -Project p.json [-ScopeText text] [-Preview náhled.pdf]` | Připojí bloky, které v dokumentu ještě nejsou (podle počtu záložek `<prefix>_bNNNN`). Vytvoří zálohu `<výstup>.backup-<čas>.docx`, zachová text před obsahem a všechny dosavadní bloky včetně uživatelových úprav, komentářů a revizí a obnoví sledování změn. Po kontrole hashe nahradí výstup. `-ScopeText` přepíše poznámku se záložkou `<prefix>_scope`. |
 | `audit-docx.ps1 -Project p.json [-Docx] [-Report] [-SkipTitlePages] [-Baseline starší.docx]` | Kontrola na dočasné kopii: každý blok proti JSON, tabulky po buňkách, obrázky a popisky, titulní strany, odkazy obsahu (záložka a skutečná stránka), jazyk, XML/ZIP integrita a média. Rozdíly textu hlásí jako uživatelské revize, neopravuje je. Návratový kód 1 = problém. `-SkipTitlePages` slouží pro starší dokumenty bez nové titulní úpravy. |
 | `check-spelling.ps1 -Project p.json -Out podezreni.json [-Queries dotazy.json] [-Allow povolena.txt] [-Docx]` | Wordem nalezené pravopisné chyby a regexová podezření (OCR: `\|`, ligatury, číslice ve slově, rozdělená slova, dvojité mezery, neobvyklé znaky). `-Queries` vytvoří vstup pro `pdf-source-tools/proof-sheet.mjs`. `-Allow` je seznam povolených slov (jedno na řádek). |
