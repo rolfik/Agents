@@ -82,6 +82,31 @@ U rozpracovaného překladu, který vznikl bez originálu ve Wordu:
 - V tabulkách zachovej vazby řádků a sloupců. Vzorce ověř podle obrazu stránky, nejen podle OCR.
 - Původní stránkové odkazy v rejstříku či citacích ponech pouze s jasným označením, že patří originálu. Neprezentuj je jako stránky českého překladu a nepřepočítávej je odhadem.
 
+### Poznámky pod čarou a vysvětlivky
+
+- Vytvoř soupis poznámek z originálu ještě před sazbou: písmeno/číslo značky, přesné místo značky v textu, úplné znění a typ (autorská poznámka, vysvětlivka, bibliografický odkaz). Zkontroluj všechny stránky a oba sloupce; textové vytěžení PDF často oddělí poznámku od značky nebo ji vloží mezi sloupce.
+- Zachovej každou skutečnou poznámku a její přiřazení ke správnému slovu či větě. Přeložené vysvětlivky vlož jako skutečné poznámky pod čarou, nikoli jako osamocené odstavce v hlavním textu, volně plovoucí text nebo pokračování poznámky na další stránce dokumentu. Zalomené části poznámky znovu spoj a ověř proti zobrazené předloze.
+- Po sazbě porovnej seznam značek v hlavním textu se seznamem poznámek: ověř, že nic nechybí, nic není duplicitní či osiřelé a že automatické číslování běží ve správném pořadí. Rozliš skutečnou značku poznámky od horního čísla bibliografické citace nebo čísla rovnice; nepřeváděj citaci na poznámku bez opory v originálu.
+- Zkontroluj úplnost, jazyk a sazbu každého znění. Nedoplňuj poznámky podle domněnky; pokud originál neobsahuje jejich text nebo značku, nepřenášej do překladu osiřelou poznámku. Zachovej e-mailové a bibliografické údaje přesně.
+
+### Bibliografické citace a seznam literatury
+
+- Bibliografické citace v textu nejsou poznámky pod čarou. Zachovej je jako průběžná čísla (včetně rozsahů a skupin, např. `3, 4` nebo `6, 7–14`) a přiřaď je ke správným, stejně očíslovaným položkám seznamu literatury na konci dokumentu. Nevkládej je do poznámek pod čarou ani je nepřečíslovávej nezávisle.
+- Před sazbou vytvoř mapu číslo → úplná bibliografická položka a zaznamenej každé místo citace v hlavním textu. Číslo citace patří ke zdrojovému tvrzení či citátu, ne k nejbližší čárce nebo náhodnému slovu; umístění a číslování porovnej s obrazem originálu, protože OCR často přesune číslo na začátek či konec sousedního řádku/sloupce.
+- Každou položku seznamu uveď právě jednou, v samostatném odstavci s viditelným číslem. Ověř spojitost číslování, úplnost všech citovaných položek a shodu údajů (autor, název, vydání, rok, strany) s originálem. Při opravě chybně zalomeného seznamu znovu spoj text položek; číslo následující reference nesmí zůstat na konci předchozí položky.
+- Citace formátuj jako horní index, pokud tak v originálu vypadají. Pokud prostředí umožňuje interní odkazy, propoj číslo v textu s odpovídající položkou literatury; odkaz musí mířit na položku, nikoli do poznámek pod čarou. Kontroluj funkčnost všech odkazů po uložení a opětovném otevření DOCX.
+- Po sazbě ověř obousměrnou shodu: každá citace míří na existující položku a každá číslovaná položka je správně spojena s místem, které ji cituje. Ověř zvlášť, že čísla rovnic, horní matematické indexy, datumy a číslované poznámky nebyly chybně rozpoznány jako bibliografické citace.
+
+### Zachování a kontrola vzorců
+
+- Vzorce nepřekládej jako běžný text. Chraň celé matematické úseky včetně proměnných v odstavcích, jednotek a popisků; překládej pouze jejich slovní doprovod. Názvy funkcí a proměnné nesmějí změnit význam (např. `sin` na „hřích“, `m_e` na „já“, `u_p` na „nahoru“ či `r_n` na „teď“).
+- Před překladem vytvoř inventář číslovaných i nečíslovaných rovnic a jejich umístění v originálu. Každou porovnej s obrazem PDF: znaménka, řecká písmena, horní a dolní indexy, záporné exponenty, násobení, odmocniny, rozsah čitatele/jmenovatele, závorky, integrály a čísla rovnic. Kontroluj také stejné veličiny a číselné hodnoty v okolním textu.
+- Textová vrstva PDF může systematicky zaměňovat `=` za `1/4`, `π`, `ρ`, `ω`, `θ`, `μ` za latinské znaky nebo ztrácet minus před exponentem. Neopravuj to slepým globálním nahrazováním: skutečný zlomek `1/4` či latinská proměnná mohou být správné. Rozhoduje vykreslený originál, nikoli odhad podle rozměrové analýzy.
+- Ve Wordu zachovej existující matematické objekty; nové nebo poškozené vzorce obnov jako editovatelné rovnice Office Math (OMML). Nepoužívej rozpadlé textové řádky, plovoucí textová pole a kreslené čáry jako náhradu zlomků. Při opravě odstraň jen prokazatelné zbytky téže rovnice, nikoli ilustrace nebo nesouvisející objekty. Pokud věrný editovatelný přepis nelze ověřit, přiznej omezení; případný přesný obrazový výřez jasně označ jako needitovatelný.
+- Po převodu z lineárního zápisu ověř skutečnou strukturu OMML: zlomky, indexy a odmocniny nesmějí zůstat jen doslovnými znaky `_`, `^` nebo nevyhodnocenými příkazy. Kontroluj také rozsah těchto konstrukcí: Word může do exponentu či indexu pohltit následující závorku nebo činitel, případně do jmenovatele následující násobek. Činitele odděluj a rozsah zlomků jednoznačně vymez; porovnej obsah uzlů indexů a jmenovatelů s předlohou. Samotné volání `BuildUp` ani počet objektů rovnic není důkazem správného převodu.
+- Po uložení DOCX znovu otevři, exportuj kontrolní PDF a prohlédni všechny opravené rovnice při čitelném zvětšení. Ověř jejich úplnost, pořadí a číslování proti inventáři a že se při sazbě A5 neztratily či nepřekryly části zlomků nebo exponentů. Porovnej text a objekty mimo opravy, komentáře, revize a nastavení číslování stran.
+- Rozlišuj chybu přepisu od chyby autora. Rozměrově nebo početně sporný vztah, který je už v originálu, zachovej; případné vysvětlení uveď odděleně jako poznámku překladatele a bez zadání nepřepisuj autorovu matematiku.
+
 ## 6. Sestavení Word dokumentu
 
 - Vytvářej skutečně editovatelný dokument, nikoli stránky jako obrázky. Používej standardní odstavcové styly, správnou hierarchii nadpisů a jazyk kontroly pravopisu cs-CZ pro český text a jazyk originálu pro Word originálu.
